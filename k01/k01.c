@@ -73,12 +73,10 @@ for (pos = 0; pos < size; pos++)
 {
     if (key == arrayCity[pos].id)
     {
-        result = pos;
-        break;
+       return pos;
     }
-    
 }
-return result;
+return -1;
 }
 
 
@@ -94,8 +92,7 @@ while (left <= right)
     pos = left + (right - left)/2;
     if (key == arrayCity[pos].id)
     {
-    result = pos;
-    break;
+    return pos;
     }
     else if (key > arrayCity[pos].id)
     {
@@ -108,7 +105,7 @@ while (left <= right)
     }
     
 }
-return result;
+return -1;
 }
 
 
