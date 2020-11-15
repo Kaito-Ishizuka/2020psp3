@@ -39,7 +39,7 @@ void ReleaseList(Node* pTop)
 
     pNode = pTop;
     
-    while(pNode != NULL) {
+    while(pNode != NULL){
         pTemp = pNode;
         pNode = pNode->pNext;
         free(pTemp);
