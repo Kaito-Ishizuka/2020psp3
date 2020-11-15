@@ -19,7 +19,7 @@ typedef struct node_data {
 } Node;
 
 #define DEBUG
-#define CHALLENGE1
+//#define CHALLENGE1
 //#define CHALLENGE2
 
 #define SUCCESS 1
