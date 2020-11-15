@@ -19,8 +19,8 @@ typedef struct node_data {
 } Node;
 
 #define DEBUG
-#define CHALLENGE1
-#define CHALLENGE2
+//#define CHALLENGE1
+//#define CHALLENGE2
 
 #define SUCCESS 1
 #define ERROR   0
@@ -77,8 +77,8 @@ Node* InsertNewNode(City newCity, Node* pNext)
 {
     //  ここを実装する
 Node *pNode = malloc(sizeof(Node));
-pNode->pNext = pNext;
-pNode->city = newCity;
+pNode -> pNext = pNext;
+pNode -> city = newCity;
 
 return pNode;
 }
