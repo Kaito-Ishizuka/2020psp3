@@ -20,7 +20,7 @@ typedef struct node_data {
 
 #define DEBUG
 #define CHALLENGE1
-#define CHALLENGE2
+//#define CHALLENGE2
 
 #define SUCCESS 1
 #define ERROR   0
