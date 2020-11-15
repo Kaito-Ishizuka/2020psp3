@@ -77,8 +77,8 @@ Node* InsertNewNode(City newCity, Node* pNext)
 {
     //  ここを実装する
 Node *pNode = malloc(sizeof(Node));
-pNode->pNext = pNext;
-pNode->city = newCity;
+pNode -> pNext = pNext;
+pNode -> city = newCity;
 
 return pNode;
 }
