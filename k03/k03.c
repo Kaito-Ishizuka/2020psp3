@@ -12,25 +12,34 @@ char StrKey[] = "wind";
 char* ForceSearch(char text[], char key[])
 {
     //  ここを実装する
-size_t text_len = strlen(text);
-size_t key_len = strlen(key);
 
-if (text_len < key_len)
-{
-    return NULL;
-}
-for (size_t text_i = 0, E = text_len - key_len; text_i <= E; ++text_i)
-{
-    bool match = true;
-     for (size_t key_i = 0; key_i < key_len; ++key_i) {
-            if (text[text_i + key_i] != key[key_i]) {
-                match = false;
-                break;
+    int key_len;
+    int text_len;
+    int pos= 0;
+    int start;
+
+    key_len = strlen(key);
+    text_len = strlen(text);
+
+    for(start =0;start<text_len;start++)
+    {
+         for(pos=0;pos<key_len;pos++)
+          {
+             if(text[start+pos]==key[pos])
+             {
+                 if(pos==key_len-1)
+              {
+                return &text[start];
+              }
+             else{
+                continue;
+                 }
             }
-        }
-
-        if (match) {
-            return text + text_i;
+            else
+            {
+            break;
+            }
+            
         }
     }
     return NULL;
@@ -40,36 +49,57 @@ for (size_t text_i = 0, E = text_len - key_len; text_i <= E; ++text_i)
 char* BMSearch(char text[], char key[])
 {
     //  ここを実装する
-    size_t skip_tbl[ALPHABET_LEN];
-    size_t key_len = strlen(key);
-    size_t text_len = strlen(text);
-    for (size_t i = 0; i < ALPHABET_LEN; ++i) {
-        skip_tbl[i] = key_len;
+     int index;
+    int key_index;
+    int find = 0;
+    int text_len = strlen(text);
+    int key_len = strlen(key);
+    int table[ALPHABET_LEN];
+    int index_bf;
+    for(index=0; index < ALPHABET_LEN; index++) 
+    {
+        table[index]=key_len;
     }
-    for (size_t i = 0; i < key_len; ++i) {
-        skip_tbl[(size_t)key[i]] = key_len - 1 - i; 
+    for(key_index=0; key_index < key_len; key_index++)
+    {
+        table[(int)key[key_index]]=key_len - 1 - key_index;
     }
-
-    size_t pos = key_len - 1;
-    while (pos < text_len) {
-        for (size_t i = 0; i < key_len; ++i) {
-            size_t key_pos = key_len - 1 - i;
-            if (key[key_pos] != text[pos - i]) {
-                size_t new_pos = pos - i + skip_tbl[(size_t)text[pos]];
-                if (new_pos <= pos) {
-                    new_pos = pos + 1;
+    index = key_len - 1;
+    while(index < text_len)
+    {
+        index_bf=index;
+        for(key_index=key_len-1; key_index >= 0; key_index--)
+        {
+            if(text[index]==key[key_index])
+            {
+                index=index-1;
+                if(key_index == 0)
+                {
+                    find=1;
+                    break;
                 }
-                pos = new_pos;
+            }
+            else
+            {
+                index = index + table[(int)text[index]];
+                if(index <= index_bf)
+                {}
                 break;
             }
-
-            if (key_pos == 0) {
-                return text + pos - i;
-            }
         }
+        if(find==1)
+        {   
+            break;
+              }
     }
-
-    return NULL;
+    if(key_index==0)
+    {
+        return text + index + 1;
+    }
+    else
+    { 
+        return NULL;
+    }
 }
 
 int main(void)
